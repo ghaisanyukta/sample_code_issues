@@ -1,0 +1,17 @@
+LOAD DATA INFILE '/Users/sanyukta/Batting.csv' 
+INTO TABLE Lahman.batting
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+	(playerID,yearID,stint,teamID,lgID,G,AB,R,H,2B,3B,HR,@RBI,@SB,@CS,@BB,@SO,@IBB,@HBP,@SH,@SF,@GIDP)
+    set BB= if(@BB='', 0,@BB),
+		SO= if(@SO='', 0,@SO),
+		RBI= if(@RBI='', 0,@RBI),
+		CS= if(@CS='', 0,@CS),
+		SB= if(@SB='', 0,@SB),
+		IBB=if(@IBB='', 0, @IBB),
+		HBP=if(@HBP='', 0, @HBP),
+		SH=if(@SH='', 0, @SH),
+		SF=if(@SF='', 0, @SF),
+		GIDP=if(@GIDP='', 0, @GIDP);
